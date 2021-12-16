@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import {Employee} from '../components/Employee'
 
 const EmployeesPage = () => {
 	const [employees, setEmployees] = useState([])
@@ -33,18 +34,7 @@ const EmployeesPage = () => {
 			{employees.length === 0 ? (
 				<div className='loading'>Loading....</div>
 			) : (
-				employees &&
-				employees
-					.map((item) => (
-						<li key={item.id} className='employees-list'>
-							<img src={item.avatar} alt={item.first_name} />
-							{item.first_name} {item.last_name}
-							<button onClick={() => remove(item.id)} className='button-delete'>
-								<i className='fa fa-close'></i>
-							</button>
-						</li>
-					))
-					.reverse()
+				employees && employees.map((item) => <Employee item={item} remove={remove} />)
 			)}
 		</div>
 	)
